@@ -7,7 +7,7 @@ try{
         // for display purposes
         // Get some code from a GitHub repository
         git url: 'git@gitlab.com:baali-boudjemaa/dockerME.git',
-            credentialsId: 'springdeploy-user',
+            credentialsId: '6244336',
             branch: 'main'
      }
     stage('Build docker') {
