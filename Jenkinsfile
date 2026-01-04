@@ -1,5 +1,5 @@
 node {
-    def WORKSPACE = "C:\ProgramData\Jenkins\.jenkins\workspace\dockerME"
+    def WORKSPACE = "C:/ProgramData/Jenkins/.jenkins/workspace/dockerME"
     def dockerImageTag = "dockerME${env.BUILD_NUMBER}"
 try{
     notifyBuild('STARTED')
