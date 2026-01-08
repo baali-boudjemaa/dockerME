@@ -8,7 +8,7 @@ try{
         // Get some code from a GitHub repository
         git url: 'git@gitlab.com:baali-boudjemaa/dockerME.git',
             credentialsId: 'b84aa8e3f1c82271a8be7401bca0d26499f571b5ff227414aa67ffec6c52b602',
-            branch: 'main'
+            branch: 'master'
      }
     stage('Build docker') {
           def dockerImage = docker.build("dockerME:${env.BUILD_NUMBER}")
