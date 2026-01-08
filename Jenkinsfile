@@ -11,7 +11,7 @@ try{
             branch: 'main'
      }
     stage('Build docker') {
-         dockerImage = docker.build("dockerME:${env.BUILD_NUMBER}")
+          def dockerImage = docker.build("dockerME:${env.BUILD_NUMBER}")
     }
     stage('Deploy docker'){
           echo "Docker Image Tag Name: ${dockerImageTag}"
