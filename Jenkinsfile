@@ -7,7 +7,7 @@ try{
         // for display purposes
         // Get some code from a GitHub repository
         git url: 'git@gitlab.com:baali-boudjemaa/dockerME.git',
-            credentialsId: 'b84aa8e3f1c82271a8be7401bca0d26499f571b5ff227414aa67ffec6c52b602',
+            credentialsId: 'glpat-cGe6ypPqarEZMNXtUt86eW86MQp1OmprcDV6Cw.01.121ytlzu4',
             branch: 'master'
      }
     stage('Build docker') {
