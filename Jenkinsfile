@@ -7,7 +7,7 @@ try{
         // for display purposes
         // Get some code from a GitHub repository
         git url: 'git@gitlab.com:baali-boudjemaa/dockerME.git',
-            credentialsId: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCtJwIsMLNfcYXh5N8RwtBJ+V5DNuZYfoeDbqVrWdzsjRG01bgOuO9/0o9gf/dcKUCyuO28dVGU/+NnnKPERJjXFoAGSvFXUpzUMBdwWzv08nHYbtBUyACAOhfkMg43BIJRjPkG8cKKpme5z4zhTBv/ET7P0yf8EYx/74DkrjRFBgAEOuSwLekLriO3uUXUueGZ3TdvSyO2QHXoyzh+IHZdYSP0B+V17gehiZJtq9ruJgUFZevNW4UE2i8SbnDR0ESNvwsf9UrOHU2/f32Ra/TlYxWI5MzDCZdL07FeMU98SiJgwRXmpQ2QLG0Zt+1muUgyZ+AwXV/npwQK8Na+iPpa8z32bAwMZZnHwD7Uz9JOTtIXFm3aLU2lqqFFSoOCqCSiz59WNbFGUcAKiAPxA7AylLYQKqWZWM+Dlu0fhsvqz7jqcEoUTsx4425SphVWuuU9JD5sTJVOx8LmTsjdWQ4ePTC0f+Td6tzlbu0WCUjAKAobst6LmoFPTuDR0VDCKPc= docker@DESKTOP-FSM1NH9'
+            credentialsId: ${{ secrets.CredentialId }}
             branch: 'master'
 
      }
