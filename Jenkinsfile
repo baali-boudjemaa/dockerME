@@ -10,6 +10,7 @@ try{
             credentialsId: ${{ secrets.CredentialId }}
             branch: 'master'
 
+
      }
     stage('Build docker') {
           def dockerImage = docker.build("dockerME:${env.BUILD_NUMBER}")
