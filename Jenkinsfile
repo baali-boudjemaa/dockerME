@@ -7,11 +7,11 @@ try{
         // for display purposes
         // Get some code from a GitHub repository
         git url: 'git@gitlab.com:baali-boudjemaa/dockerME.git',
-            credentialsId: 'b84aa8e3f1c82271a8be7401bca0d26499f571b5ff227414aa67ffec6c52b602',
-            branch: 'main'
+            credentialsId: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCx9A5UfoGrrD58uJwJkCLl2Zcm5Kg7ceYrOH8kTGfRE3FibLp7+d0zC1/BaZxLfhCNEZb89tTo/DwTQvXAZUd5517H5AwR9sGIT0N6ghNmDYjDTlFXSoL1+uKXmCGV64C5O+WfpY+WuaG1iEX1kd2C9n9hqPTF9mAPGsG98b57WVqvDaXsI1hqcbZnuLsGGn6dpkFhfxS7m71YS2T7MtJrxqj2AQrbfjXDSZm4R6l+SDT0NFVzvOaYqjnsdVIzlBemDMhe+c3o7mBLGgLBW3Pi2vpfCsTdeUYzG1Wb/6DXXIusIZ7SX75Yn2AfwVPLQFzVgXWICo8ZLpbdOajrw+ZZ6AGwAGmpPLkn0Azf+W2OmcFD7s+btZVgxGlMW11FNHDZpiCyOs9wZO8vdCvtvl5mQYfTFCS4P/lPSfZQcILrwx9adfU7ADEqtSYH9lPz+EFMiTEJcbfoGmS7IFpQdIjVszI3Eis8HHtUsCEzClPtKeDZh53IL8rWX35RHwk5F8F2vzBIg+H029Fx2/4Du+/pL3KSX0IENNRGBxglL6dnx37s2vrme0IgKQdpyRCMp/A53CpZek4MIYG+00NTInYpQin4HU9DW5RHzh9NLZwO37uNHnyQ0sNT+h+kofn7ZjuV18BKbTF3bXqL14E3Bwz4fKJSCLYzYwz+p7ABjSwljw== baaliboudjemaaens@gmail.com',
+            branch: 'master'
      }
     stage('Build docker') {
-         dockerImage = docker.build("dockerME:${env.BUILD_NUMBER}")
+          def dockerImage = docker.build("dockerME:${env.BUILD_NUMBER}")
     }
     stage('Deploy docker'){
           echo "Docker Image Tag Name: ${dockerImageTag}"
@@ -49,7 +49,7 @@ def notifyBuild(String buildStatus = 'STARTED'){
   emailext (
      to: "baaliboudjemaaens@gmail.com",
      subject: subject_email,
-     body: "details",
+     body: details,
      recipientProviders: [[$class: 'DevelopersRecipientProvider']]
   )
 
