@@ -3,16 +3,17 @@ node {
     def dockerImageTag = "dockerME${env.BUILD_NUMBER}"
     environment {
             // The secret is bound to an environment variable named 'GLOBAL_TOKEN'
-            GLOBAL_TOKEN = "${MY_API_TOKEN_ID}"
+            MY_API_TOKEN_ID= "${MY_API_TOKEN_ID}"
         }
 try{
     notifyBuild('STARTED')
     stage('Clone Repo') {
         // for display purposes
         // Get some code from a GitHub repository
-        sh 'echo "Using token in Stage 1: $GLOBAL_TOKEN"'
+        echo "Using token in Stage 1: ${env.MY_API_TOKEN_ID}
         git url: 'git@gitlab.com:baali-boudjemaa/dockerME.git',
-            credentialsId:  ${env.GLOBAL_TOKEN}
+            credentialsId:  ${env.MY_API_TOKEN_ID}
+
             branch: 'master'
 
 
