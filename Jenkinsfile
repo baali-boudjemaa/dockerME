@@ -11,7 +11,7 @@ try{
         // for display purposes
         // Get some code from a GitHub repository
         git url: 'git@gitlab.com:baali-boudjemaa/dockerME.git',
-            credentialsId: (${{ secrets.CredentialId }})
+            credentialsId: $GLOBAL_TOKEN
             branch: 'master'
 
 
