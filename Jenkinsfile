@@ -10,7 +10,7 @@ try{
     stage('Clone Repo') {
         // for display purposes
         // Get some code from a GitHub repository
-        sh 'echo "Using token in Stage 1: $GLOBAL_TOKEN"'
+        echo "Using token in Stage 1: $GLOBAL_TOKEN"
         git url: 'git@gitlab.com:baali-boudjemaa/dockerME.git',
             credentialsId:  ${env.GLOBAL_TOKEN}
             branch: 'master'
