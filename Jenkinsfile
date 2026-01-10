@@ -3,7 +3,7 @@ node {
     def dockerImageTag = "dockerME${env.BUILD_NUMBER}"
     environment {
             // The secret is bound to an environment variable named 'GLOBAL_TOKEN'
-            GLOBAL_TOKEN = "${MY_API_TOKEN_ID}"
+            GLOBAL_TOKEN = 'MY_API_TOKEN_ID'
         }
 try{
     notifyBuild('STARTED')
