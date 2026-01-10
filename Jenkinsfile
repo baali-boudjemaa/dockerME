@@ -12,6 +12,7 @@ try{
         // Get some code from a GitHub repository
         git url: 'git@gitlab.com:baali-boudjemaa/dockerME.git',
             credentialsId: $GLOBAL_TOKEN
+
             branch: 'master'
 
 
