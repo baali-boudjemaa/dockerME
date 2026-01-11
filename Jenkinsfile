@@ -10,13 +10,10 @@ try{
     stage('Clone Repo') {
         // for display purposes
         // Get some code from a GitHub repository
-        echo "Using token in Stage 1: ${env.MY_API_TOKEN_ID}
+        echo "Using token in Stage 1: ${env.MY_API_TOKEN_ID}"
         git url: 'git@gitlab.com:baali-boudjemaa/dockerME.git',
             credentialsId:  ${env.MY_API_TOKEN_ID}
-
             branch: 'master'
-
-
      }
     stage('Build docker') {
           def dockerImage = docker.build("dockerME:${env.BUILD_NUMBER}")
@@ -29,36 +26,9 @@ try{
 }catch(e){
     currentBuild.result = "FAILED"
     throw e
-}finally{
-    notifyBuild(currentBuild.result)
- }
+}
 }
 
 
-def notifyBuild(String buildStatus = 'STARTED'){
 
-  // build status of null means successful
-  buildStatus =  buildStatus ?: 'SUCCESSFUL'
 
-  // Default values
-  def colorName = 'RED'
-  def colorCode = '#FF0000'
-  def now = new Date()
-
-  // message
-  def subject = "${buildStatus}, Job: ${env.JOB_NAME} FRONTEND - Deployment Sequence: [${env.BUILD_NUMBER}] "
-  def summary = "${subject} - Check On: (${env.BUILD_URL}) - Time: ${now}"
-  def subject_email = "Spring boot Deployment"
-  def details = """<p>${buildStatus} JOB </p>
-    <p>Job: ${env.JOB_NAME} - Deployment Sequence: [${env.BUILD_NUMBER}] - Time: ${now}</p>
-    <p>Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME}</a>"</p>"""
-
-  // Email notification
-  emailext (
-     to: "baaliboudjemaaens@gmail.com",
-     subject: subject_email,
-     body: details,
-     recipientProviders: [[$class: 'DevelopersRecipientProvider']]
-  )
-
-}
