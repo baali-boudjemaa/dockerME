@@ -1,7 +1,7 @@
 pipeline {
     agent any
-    def WORKSPACE = "C:/ProgramData/Jenkins/.jenkins/workspace/dockerME"
-    def dockerImageTag = "dockerME${env.BUILD_NUMBER}"
+    def WORKSPACE = 'C:/ProgramData/Jenkins/.jenkins/workspace/dockerME'
+    def dockerImageTag = 'dockerME${env.BUILD_NUMBER}'
         environment {
                 // The secret is bound to an environment variable named 'GLOBAL_TOKEN'
                 MY_API_TOKEN_ID= "${MY_API_TOKEN_ID}"
