@@ -1,4 +1,5 @@
-node {
+pipeline  {
+agent any
     def WORKSPACE = "C:/ProgramData/Jenkins/.jenkins/workspace/dockerME"
     def dockerImageTag = "dockerME${env.BUILD_NUMBER}"
     environment {
@@ -6,7 +7,7 @@ node {
             MY_API_TOKEN_ID= "${MY_API_TOKEN_ID}"
         }
 try{
-    notifyBuild('STARTED')
+    
     stage('Clone Repo') {
         // for display purposes
         // Get some code from a GitHub repository
