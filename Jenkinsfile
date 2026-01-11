@@ -9,6 +9,7 @@ agent any
 try{
     
     stage('Clone Repo') {
+
         // for display purposes
         // Get some code from a GitHub repository
         echo "Using token in Stage 1: ${env.MY_API_TOKEN_ID}"
