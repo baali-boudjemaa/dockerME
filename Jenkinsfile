@@ -44,7 +44,8 @@ stages{
         echo "Using token in Stage 1: ${env.MY_API_TOKEN_ID}"
         git url: 'git@gitlab.com:baali-boudjemaa/dockerME.git',
             credentialsId:  ${env.MY_API_TOKEN_ID}
-            branch: 'master'}
+            branch: 'master'
+            }
      }
     stage('Build docker') {
           steps{def dockerImage = docker.build("dockerME:${env.BUILD_NUMBER}")}
@@ -52,7 +53,8 @@ stages{
     stage('Deploy docker'){
           steps{echo "Docker Image Tag Name: ${dockerImageTag}"
           sh "docker stop dockerME || true && docker rm dockerME || true"
-          sh "docker run --name dockerME -d -p 8081:8081 dockerME:${env.BUILD_NUMBER}"}
+          sh "docker run --name dockerME -d -p 8081:8081 dockerME:${env.BUILD_NUMBER}"
+          }
     }
 }
 }
