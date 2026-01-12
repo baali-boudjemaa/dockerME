@@ -28,13 +28,14 @@
 
 pipeline  {
 agent any
-    def WORKSPACE = "/var/lib/jenkins/workspace/dockerME"
-    def dockerImageTag = "dockerME${env.BUILD_NUMBER}"
+
     environment {
+          WORKSPACE = "/var/lib/jenkins/workspace/dockerME"
+           dockerImageTag = "dockerME${env.BUILD_NUMBER}"
             // The secret is bound to an environment variable named 'GLOBAL_TOKEN'
             MY_API_TOKEN_ID= "${MY_API_TOKEN_ID}"
         }
-try{
+stages{
     
     stage('Clone Repo') {
 
@@ -53,9 +54,6 @@ try{
           sh "docker stop dockerME || true && docker rm dockerME || true"
           sh "docker run --name dockerME -d -p 8081:8081 dockerME:${env.BUILD_NUMBER}"
     }
-}catch(e){
-    currentBuild.result = "FAILED"
-    throw e
 }
 }
 
