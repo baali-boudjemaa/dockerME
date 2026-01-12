@@ -1,37 +1,14 @@
-pipeline {
-    agent any
-    environment {
-        WORKSPACE = 'C:/ProgramData/Jenkins/.jenkins/workspace/dockerME'
-        DOCKER_IMAGE_TAG = "dockerME${env.BUILD_NUMBER}"
-        MY_API_TOKEN_ID = credentials('MY_API_TOKEN_ID')
-    }
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-                //sh 'mvn -B -DskipTests clean package'
-                sh './mvnw clean package'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
-    }
-}
-/*
+
+
 pipeline  {
 agent any
-    def WORKSPACE = "C:/ProgramData/Jenkins/.jenkins/workspace/dockerME"
+
+    def WORKSPACE = "/var/lib/jenkins/workspace/dockerME"
     def dockerImageTag = "dockerME${env.BUILD_NUMBER}"
+
     environment {
             // The secret is bound to an environment variable named 'GLOBAL_TOKEN'
+            //kjkjlj
             MY_API_TOKEN_ID= "${MY_API_TOKEN_ID}"
         }
 try{
@@ -62,4 +39,30 @@ try{
 
 
 
- */
+/* pipeline {
+    agent any
+    environment {
+        WORKSPACE = 'C:/ProgramData/Jenkins/.jenkins/workspace/dockerME'
+        DOCKER_IMAGE_TAG = "dockerME${env.BUILD_NUMBER}"
+        MY_API_TOKEN_ID = credentials('MY_API_TOKEN_ID')
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+                //sh 'mvn -B -DskipTests clean package'
+                sh './mvnw clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+} */
