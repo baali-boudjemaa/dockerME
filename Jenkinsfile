@@ -33,6 +33,7 @@ agent any
 
     environment {
             // The secret is bound to an environment variable named 'GLOBAL_TOKEN'
+            //kjkjlj
             MY_API_TOKEN_ID= "${MY_API_TOKEN_ID}"
         }
 try{
