@@ -10,7 +10,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 //sh 'mvn -B -DskipTests clean package'
-                './mvnw clean package'
+                sh './mvnw clean package'
             }
         }
         stage('Test') {
