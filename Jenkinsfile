@@ -28,6 +28,7 @@
 
 pipeline  {
 agent any
+
     def WORKSPACE = "/var/lib/jenkins/workspace/dockerME"
     def dockerImageTag = "dockerME${env.BUILD_NUMBER}"
 
