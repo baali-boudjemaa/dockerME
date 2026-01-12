@@ -1,4 +1,4 @@
-pipeline {
+/* pipeline {
     agent any
     environment {
         WORKSPACE = 'C:/ProgramData/Jenkins/.jenkins/workspace/dockerME'
@@ -24,11 +24,11 @@ pipeline {
             }
         }
     }
-}
-/*
+} */
+
 pipeline  {
 agent any
-    def WORKSPACE = "C:/ProgramData/Jenkins/.jenkins/workspace/dockerME"
+    def WORKSPACE = "/var/lib/jenkins/workspace/dockerME"
     def dockerImageTag = "dockerME${env.BUILD_NUMBER}"
     environment {
             // The secret is bound to an environment variable named 'GLOBAL_TOKEN'
@@ -62,4 +62,4 @@ try{
 
 
 
- */
+
