@@ -43,7 +43,7 @@ stages{
         // Get some code from a GitHub repository
         script {
                  echo "Using token in Stage 1: ${env.MY_API_TOKEN_ID}"
-                 git url: 'git@gitlab.com:baali-boudjemaa/dockerME.git',
+                 git url: 'https://gitlab.com/baali-boudjemaa/dockerME.git',
                  credentialsId:  "gitlab-access"
                  branch: 'master'
                 }
