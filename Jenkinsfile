@@ -52,7 +52,7 @@ stages{
     stage('Build docker') {
           steps{
             script {
-             dockerImage = docker.build("dockerme:${env.BUILD_NUMBER}")
+            def dockerImage = docker.build("dockerme:${env.BUILD_NUMBER}")
            }
           }
     }
