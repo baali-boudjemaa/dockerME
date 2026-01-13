@@ -33,7 +33,7 @@ agent any
           WORKSPACE = "/var/lib/jenkins/workspace/dockerME"
            dockerImageTag = "dockerME${env.BUILD_NUMBER}"
             // The secret is bound to an environment variable named 'GLOBAL_TOKEN'
-            MY_API_TOKEN_ID= "${MY_API_TOKEN_ID}"
+            MY_API_TOKEN_ID = credentials('MY_API_TOKEN_ID')
         }
 stages{
     
