@@ -48,7 +48,9 @@ stages{
             }
      }
     stage('Build docker') {
-          steps{def dockerImage = docker.build("dockerME:${env.BUILD_NUMBER}")}
+          steps{
+           dockerImage = docker.build("dockerME:${env.BUILD_NUMBER}")
+          }
     }
     stage('Deploy docker'){
           steps{echo "Docker Image Tag Name: ${dockerImageTag}"
