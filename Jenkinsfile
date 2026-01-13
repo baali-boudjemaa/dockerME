@@ -60,8 +60,8 @@ stages{
           steps{
                 script {
                      echo "Docker Image Tag Name: ${env.dockerImageTag}"
-                     sh "docker stop dockerME || true && docker rm dockerME || true"
-                      sh "docker run --name dockerME -d -p 8081:8081 dockerME:${env.BUILD_NUMBER}"
+                     sh "docker stop dockerme || true && docker rm dockerme || true"
+                     sh "docker run --name dockerme -d -p 8081:8081 dockerME:${env.BUILD_NUMBER}"
             }
           }
     }
