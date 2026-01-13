@@ -30,6 +30,7 @@ pipeline  {
 agent any
 
     environment {
+          def BUILD_NUMBER="1"
           WORKSPACE = "/var/lib/jenkins/workspace/dockerME"
            dockerImageTag = "dockerME${env.BUILD_NUMBER}"
             // The secret is bound to an environment variable named 'GLOBAL_TOKEN'
