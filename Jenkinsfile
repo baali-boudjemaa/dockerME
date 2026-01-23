@@ -114,3 +114,54 @@ try{
         }
     }
 } */
+<<<<<<< HEAD
+=======
+
+pipeline  {
+agent any
+
+    environment {
+          def BUILD_NUMBER="1"
+          WORKSPACE = "/var/lib/jenkins/workspace/dockerME"
+           dockerImageTag = "dockerME${env.BUILD_NUMBER}"
+            // The secret is bound to an environment variable named 'GLOBAL_TOKEN'
+            //MY_API_TOKEN_ID = credentials('MY_API_TOKEN_ID')
+        }
+stages{
+    
+    stage('Clone Repo') {
+
+       steps{ // for display purposes
+        // Get some code from a GitHub repository
+        script {
+                 //echo "Using token in Stage 1: ${env.MY_API_TOKEN_ID}"
+                 git url: 'https://gitlab.com/baali-boudjemaa/dockerME.git',
+                 credentialsId:  "gitlab-access"
+                 branch: 'master'
+                }
+            }
+     }
+    stage('Build docker') {
+          steps{
+            script {
+                   sh "docker build -t my-spring-app ."
+           }
+          }
+    }
+    stage('Deploy docker'){
+          steps{
+                script {
+                     echo "Docker Image Tag Name: ${env.dockerImageTag}"
+                     sh "docker stop dockerme || true && docker rm dockerme || true"
+                     sh "docker run -p 8081:8080 -e PORT=8080 my-spring-app"
+            }
+          }
+    }
+}
+}
+
+
+
+
+
+>>>>>>> 35c8708af3ba2f8204622fba6c89d488b3bd48e2
