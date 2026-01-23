@@ -24,12 +24,12 @@ try{
             branch: 'master'
      }
     stage('Build docker') {
-          def dockerImage = docker.build("dockerME:${env.BUILD_NUMBER}")
+          def dockerImage = docker.build("dockerME")
     }
     stage('Deploy docker'){
           echo "Docker Image Tag Name: ${dockerImageTag}"
           sh "docker stop dockerME || true && docker rm dockerME || true"
-          sh "docker run --name dockerME -d -p 8081:8081 dockerME:${env.BUILD_NUMBER}"
+          sh "docker run --name dockerME -d -p 8081:8081 dockerME"
     }
 }catch(e){
     currentBuild.result = "FAILED"
