@@ -1,3 +1,45 @@
+
+
+pipeline  {
+agent any
+
+
+
+    environment {
+      WORKSPACE = "/var/lib/jenkins/workspace/dockerME"
+       dockerImageTag = "dockerME${env.BUILD_NUMBER}"
+            // The secret is bound to an environment variable named 'GLOBAL_TOKEN'
+            //kjkjlj
+            MY_API_TOKEN_ID= "${MY_API_TOKEN_ID}"
+        }
+try{
+    
+    stage('Clone Repo') {
+
+        // for display purposes
+        // Get some code from a GitHub repository
+        echo "Using token in Stage 1: ${env.MY_API_TOKEN_ID}"
+        git url: 'git@gitlab.com:baali-boudjemaa/dockerME.git',
+            credentialsId:  ${env.MY_API_TOKEN_ID}
+            branch: 'master'
+     }
+    stage('Build docker') {
+          def dockerImage = docker.build("dockerME")
+    }
+    stage('Deploy docker'){
+          echo "Docker Image Tag Name: ${dockerImageTag}"
+          sh "docker stop dockerME || true && docker rm dockerME || true"
+          sh "docker run --name dockerME -d -p 8081:8081 dockerME"
+    }
+}catch(e){
+    currentBuild.result = "FAILED"
+    throw e
+}
+}
+
+
+
+
 /* pipeline {
     agent any
     environment {
@@ -25,51 +67,3 @@
         }
     }
 } */
-
-pipeline  {
-agent any
-
-    environment {
-          def BUILD_NUMBER="1"
-          WORKSPACE = "/var/lib/jenkins/workspace/dockerME"
-           dockerImageTag = "dockerME${env.BUILD_NUMBER}"
-            // The secret is bound to an environment variable named 'GLOBAL_TOKEN'
-            //MY_API_TOKEN_ID = credentials('MY_API_TOKEN_ID')
-        }
-stages{
-    
-    stage('Clone Repo') {
-
-       steps{ // for display purposes
-        // Get some code from a GitHub repository
-        script {
-                 //echo "Using token in Stage 1: ${env.MY_API_TOKEN_ID}"
-                 git url: 'https://gitlab.com/baali-boudjemaa/dockerME.git',
-                 credentialsId:  "gitlab-access"
-                 branch: 'master'
-                }
-            }
-     }
-    stage('Build docker') {
-          steps{
-            script {
-            def dockerImage = docker.build("dockerme")
-           }
-          }
-    }
-    stage('Deploy docker'){
-          steps{
-                script {
-                     echo "Docker Image Tag Name: ${env.dockerImageTag}"
-                     sh "docker stop dockerme || true && docker rm dockerme || true"
-                     sh "docker run --name dockerme -d -p 8081:8081 dockerME"
-            }
-          }
-    }
-}
-}
-
-
-
-
-
