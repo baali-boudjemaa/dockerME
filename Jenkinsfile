@@ -53,7 +53,7 @@ stages{
     stage('Build docker') {
           steps{
             script {
-            def dockerImage = docker.build("dockerme:${env.BUILD_NUMBER}")
+            def dockerImage = docker.build("dockerme")
            }
           }
     }
@@ -62,7 +62,7 @@ stages{
                 script {
                      echo "Docker Image Tag Name: ${env.dockerImageTag}"
                      sh "docker stop dockerme || true && docker rm dockerme || true"
-                     sh "docker run --name dockerme -d -p 8081:8081 dockerME:${env.BUILD_NUMBER}"
+                     sh "docker run --name dockerme -d -p 8081:8081 dockerME"
             }
           }
     }
