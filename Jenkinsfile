@@ -152,7 +152,7 @@ stages{
           steps{
                 script {
                      echo "Docker Image Tag Name: ${env.dockerImageTag}"
-                     sh "docker stop dockerme || true && docker rm dockerme || true"
+                     //sh "docker stop dockerme || true && docker rm dockerme || true"
                      sh "docker run -p 8081:8080 -e PORT=8080 my-spring-app"
             }
           }
