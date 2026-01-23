@@ -1,5 +1,52 @@
 
+pipeline {
+    agent any
 
+    environment {
+        // Define Docker image name and tag
+        DOCKER_IMAGE = "baaliboudjemaa/baaliboudjemaa"
+        IMAGE_TAG = "latest"
+        // ID of Docker Hub credentials stored in Jenkins
+        DOCKER_CRED_ID = "docker-hub-credentials-id"
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git url: 'git@gitlab.com:baali-boudjemaa/dockerME.git', credentialsId: 'MY_API_TOKEN_ID', branch: 'master'
+            }
+        }
+
+        stage('Build Application & Docker Image') {
+            steps {
+                // Build the application and the Docker image using the Dockerfile
+                sh 'docker build -t $DOCKER_IMAGE:$IMAGE_TAG .'
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                // Log in to Docker Hub using stored Jenkins credentials
+                withCredentials([usernamePassword(credentialsId: "${DOCKER_CRED_ID}", passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+                    sh 'docker push $DOCKER_IMAGE:$IMAGE_TAG'
+                }
+            }
+        }
+
+        stage('Deploy Container') {
+            steps {
+                // Stop and remove existing container, then run a new one
+                sh 'docker stop spring-app-container || true'
+                sh 'docker rm spring-app-container || true'
+                sh 'docker run -d --name spring-app-container -p 8080:8080 $DOCKER_IMAGE:$IMAGE_TAG'
+            }
+        }
+    }
+}
+
+
+/*
 pipeline  {
 agent any
 
@@ -37,7 +84,7 @@ try{
 }
 }
 
-
+*/
 
 
 /* pipeline {
