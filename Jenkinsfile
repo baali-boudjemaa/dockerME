@@ -13,14 +13,16 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git url: 'git@gitlab.com:baali-boudjemaa/dockerME.git', credentialsId: 'MY_API_TOKEN_ID', branch: 'master'
+                git url: 'git@gitlab.com:baali-boudjemaa/dockerME.git',
+                 credentialsId: 'MY_API_TOKEN_ID',
+                 branch: 'master'
             }
         }
 
         stage('Build Application & Docker Image') {
             steps {
                 // Build the application and the Docker image using the Dockerfile
-                sh 'docker build -t $DOCKER_IMAGE:$IMAGE_TAG .'
+                sh "docker build -t ${DOCKER_IMAGE}:${IMAGE_TAG}."
             }
         }
 
